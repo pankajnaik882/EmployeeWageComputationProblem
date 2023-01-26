@@ -35,6 +35,8 @@ fi
 salary=$(($empRatePerHr*$wHour))
 totalSalary=$(($totalSalary+$salary))
 ((day++))
+echo "Employee daily wage "${salary[@]}
+echo "Employee Total Wage "${totalSalary[*]}
 done
 
 echo "Employee has earned $totalSalary $ in a month (Total Working Hour : $totalWorkingHour)"
