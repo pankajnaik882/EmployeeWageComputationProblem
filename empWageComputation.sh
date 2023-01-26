@@ -9,6 +9,8 @@ empRatePerHr=20
 numWorkingDays=20
 day=1;
 
+declare -A day
+
 function calculateWorkingHour(){
 case $randomCheck in $isFullTime)
 		     empHrs=8;;
@@ -22,21 +24,24 @@ esac
 
 while [[ $day -le 20 && $totalWorkingHour -lt 100 ]]
 do
-randomCheck=$((RANDOM%3));
+	randomCheck=$((RANDOM%3));
 
-wHour=$(calculateWorkingHour $randomCheck)
-totalWorkingHour=$(($totalWorkingHour+$wHour))
+	wHour=$(calculateWorkingHour $randomCheck)
+	totalWorkingHour=$(($totalWorkingHour+$wHour))
 
 if [ $totalWorkingHour -gt 100 ]
 then
-totalWorkingHour=$(($totalWorkingHour - $wHour));
+	totalWorkingHour=$(($totalWorkingHour - $wHour));
 break
 fi
 salary=$(($empRatePerHr*$wHour))
 totalSalary=$(($totalSalary+$salary))
 ((day++))
+
 echo "Employee daily wage "${salary[@]}
 echo "Employee Total Wage "${totalSalary[*]}
+echo "Employee Day Wise Wage "${day[@]}
+
 done
 
 echo "Employee has earned $totalSalary $ in a month (Total Working Hour : $totalWorkingHour)"
